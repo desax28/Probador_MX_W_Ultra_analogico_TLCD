@@ -53,7 +53,7 @@ volatile _comandosTMP1 comandosTMP1;
 /*****************************************************************************/
 //                                          0             1516             31
 //                                          |              ||              |
-const u8 display_Inicio[] =                "PROB. LINEA MX52 PRESIONE START ";
+const u8 display_Inicio[] =                "PROB. MX W ULTRA PRESIONE START ";
 const u8 display_Sensores[] =              "1:   2:   3:    4:   5:  ";
 const u8 display_pirX_tpX[] =              "PROBANDO        OBSERVE MX  TP  ";
 const u8 display_desalimentado[] =         "      CAMAS      DESALIMENTADAS";
@@ -63,17 +63,11 @@ const u8 display_corriente_x[] =           "    MIDIENDO    CORRIENTE  MX 1";
 const u8 display_Seleccion[] =             "SELECCION MODELO PRESIONE u O d ";
 const u8 display_PresioneStart[] =         " PRESIONE START  PARA CONTINUAR "; 
 
-const u8 display_MX42[] =                  "PROBADOR ANALOG.    MX41-42     ";
-const u8 display_MX52[] =                  "PROBADOR ANALOG.    MX51-52     ";
-const u8 display_MX52W[] =                 "PROBADOR ANALOG.    MX51-52W    ";
-const u8 display_MVD97[] =                 "PROBADOR ANALOG.    MD-MVD97    ";
+const u8 __display_MXWUltra[] =            "PROBADOR ANALOG.   MX W ULTRA   ";
         
 enum{
     __modeloXX = 0,
-    __modeloSoy42,
-    __modeloSoy52,
-    __modeloSoy52W,
-    __modeloSoy97
+    __modeloSoyMXWUltra,
 };
 
 u8 modelo = __modeloXX;
@@ -244,48 +238,15 @@ void main(void)
                     
                         switch (modelo)
                         {
-                            case __modeloSoy42:
+                            case __modeloSoyMXWUltra:
                                 tlcd_DRAM_setChar(9, PERM);
                                 tlcd_DRAM_setChar(10, PERX);
-                                tlcd_DRAM_setChar(11, PER4);
-                                tlcd_DRAM_setChar(12, PER1);
-                                tlcd_DRAM_setChar(13, PERPRAYA);
-                                tlcd_DRAM_setChar(14, PER2);
-                                tlcd_DRAM_setChar(15, PERBLANCO);
+                                tlcd_DRAM_setChar(11, PERU);
+                                tlcd_DRAM_setChar(12, PERL);
+                                tlcd_DRAM_setChar(13, PERT);
+                                tlcd_DRAM_setChar(14, PERR);
+                                tlcd_DRAM_setChar(15, PERA);
                                 break;
-
-                            case __modeloSoy52:
-                                tlcd_DRAM_setChar(9, PERM);
-                                tlcd_DRAM_setChar(10, PERX);
-                                tlcd_DRAM_setChar(11, PER5);
-                                tlcd_DRAM_setChar(12, PER1);
-                                tlcd_DRAM_setChar(13, PERPRAYA);
-                                tlcd_DRAM_setChar(14, PER2);
-                                tlcd_DRAM_setChar(15, PERBLANCO);
-                                break;
-
-
-                            case __modeloSoy52W:
-                                tlcd_DRAM_setChar(9, PERM);
-                                tlcd_DRAM_setChar(10, PERX);
-                                tlcd_DRAM_setChar(11, PER5);
-                                tlcd_DRAM_setChar(12, PER1);
-                                tlcd_DRAM_setChar(13, PERPRAYA);
-                                tlcd_DRAM_setChar(14, PER2);
-                                tlcd_DRAM_setChar(15, PERW);
-                                break;
-
-
-                            case __modeloSoy97:
-                                tlcd_DRAM_setChar(9, PERM);
-                                tlcd_DRAM_setChar(10, PERV);
-                                tlcd_DRAM_setChar(11, PERD);
-                                tlcd_DRAM_setChar(12, PER9);
-                                tlcd_DRAM_setChar(13, PER7);
-                                tlcd_DRAM_setChar(14, PERBLANCO);
-                                tlcd_DRAM_setChar(15, PERBLANCO);
-                                break;
-
                         }
 
                         switch (dataL)
@@ -352,24 +313,10 @@ void main(void)
                             // tlcd_DRAM_setRAMString(0, display_PresioneStart);
                         break;
                         
-                        case PERD:
-                            tlcd_DRAM_setRAMString(0, display_MX42);
-                            modelo = __modeloSoy42;
-                        break;
-                        
-                        case PERE:
-                            tlcd_DRAM_setRAMString(0, display_MX52);
-                            modelo = __modeloSoy52;
-                        break;
                         
                         case PERF:
-                            tlcd_DRAM_setRAMString(0, display_MX52W);
-                            modelo = __modeloSoy52W;
-                        break;
-                        
-                        case PERG:
-                            tlcd_DRAM_setRAMString(0, display_MVD97);
-                            modelo = __modeloSoy97;
+                            tlcd_DRAM_setRAMString(0, __display_MXWUltra);
+                            modelo = __modeloSoyMXWUltra;
                         break;
                     }                                   
                 }
